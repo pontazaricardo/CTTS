@@ -3,13 +3,26 @@
 #include <string.h>
 
 #define DUDECT_IMPLEMENTATION
+#include <submodules/test_project/test_function.h>
+
 #include "dudect.h"
 #include "ctts_dudect_main.h"
-#include <submodules/test_project/test_function.h>
 
 /* target function to check for constant time */
 int check_tag(uint8_t *x, uint8_t *y, size_t len) {
     return memcmp(x, y, len);
+}
+
+
+
+
+
+uint8_t array_comparison_02(const uint8_t *a, const uint8_t *b, size_t len) {
+    uint8_t r = 0U;
+    for (size_t i = 0U; i < len; i++) {
+        r |= (uint8_t)(a[i] ^ b[i]);
+    }
+    return (uint8_t)(((uint64_t)0U - (uint64_t)r) >> 63U);
 }
 
 #define SECRET_LEN_BYTES (512)
@@ -20,9 +33,8 @@ uint8_t secret[SECRET_LEN_BYTES] = {0, 1, 2, 3, 4, 5, 6, 42};
 uint8_t do_one_computation(uint8_t *data) {
     /* simulate totally bogus MAC check in non-constant time */
 
-    return array_comparison(data,secret,SECRET_LEN_BYTES);
-
-    //return check_tag(data, secret, SECRET_LEN_BYTES);
+    //return array_comparison_02(data,secret,SECRET_LEN_BYTES);
+    return check_tag(data, secret, SECRET_LEN_BYTES);
 }
 
 /* called once per number_measurements */

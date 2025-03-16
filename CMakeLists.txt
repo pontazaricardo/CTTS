@@ -4,8 +4,8 @@ project(constant-time-test-suite VERSION 0.1 LANGUAGES C ASM)
 enable_testing()
 set(CMAKE_C_STANDARD 11)
 
-set(DEBUG_FLAGS -O0)
-set(RELEASE_FLAGS -Wextra -Wpedantic)
+set(DEBUG_FLAGS -O2)
+set(RELEASE_FLAGS -Wextra -Wpedantic -O2)
 
 #list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 #include(dependencies_fetch)
