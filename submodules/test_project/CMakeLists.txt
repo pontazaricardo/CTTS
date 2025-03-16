@@ -1,0 +1,11 @@
+set(SUBMODULE_LIBRARY_NAME_01 submodule_lib_01)
+
+set(SUBMODULE_LIB_HEADER_FILES_01
+        test_function.h
+)
+
+set(SUBMODULE_LIB_SOURCE_FILES_01
+        test_function.c
+)
+
+add_library(${SUBMODULE_LIBRARY_NAME_01} SHARED ${SUBMODULE_LIB_HEADER_FILES_01} ${SUBMODULE_LIB_SOURCE_FILES_01})
